@@ -30,48 +30,6 @@ export default function Header() {
   }
   const handleClose = () => setAnchorEl(null)
 
-  // 在客户端水合完成前显示加载状态
-  if (!mounted) {
-    return (
-      <AppBar position="sticky" color="transparent" elevation={0} sx={{ backdropFilter: 'blur(6px)', borderBottom: '1px solid', borderColor: 'divider' }}>
-        <Container maxWidth="lg">
-          <Toolbar sx={{ px: 0, minHeight: 64 }}>
-            <Typography
-              variant="h6"
-              component={Link}
-              href="/"
-              sx={{ flexGrow: 1, textDecoration: 'none', color: 'text.primary', fontWeight: 700, letterSpacing: '.2px' }}
-            >
-              {t.header.siteTitle}
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-              <Button component={Link} href="/about" color="inherit">
-                {t.header.about}
-              </Button>
-              <Button component={Link} href="/products" color="inherit">
-                {t.header.products}
-              </Button>
-              <Button component={Link} href="/contact" color="inherit">
-                {t.header.contact}
-              </Button>
-              <Button onClick={toggleLanguage} startIcon={<LanguageIcon />} color="inherit">
-                {t.header.language}
-              </Button>
-              <Button
-                component={Link}
-                href="/auth/sign-in"
-                startIcon={<LoginIcon />}
-                variant="outlined"
-              >
-                {t.header.login}
-              </Button>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    )
-  }
-
   return (
     <AppBar position="sticky" color="transparent" elevation={0} sx={{ backdropFilter: 'blur(6px)', borderBottom: '1px solid', borderColor: 'divider' }}>
       <Container maxWidth="lg">
@@ -85,11 +43,20 @@ export default function Header() {
             {t.header.siteTitle}
           </Typography>
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+            <Button component={Link} href="/" color="inherit">
+              {t.header.home}
+            </Button>
             <Button component={Link} href="/about" color="inherit">
               {t.header.about}
             </Button>
             <Button component={Link} href="/products" color="inherit">
               {t.header.products}
+            </Button>
+            <Button component={Link} href="/events" color="inherit">
+              {t.header.events}
+            </Button>
+            <Button component={Link} href="/membership" color="inherit">
+              {t.header.membership}
             </Button>
             <Button component={Link} href="/contact" color="inherit">
               {t.header.contact}
@@ -97,7 +64,7 @@ export default function Header() {
             <Button onClick={toggleLanguage} startIcon={<LanguageIcon />} color="inherit">
               {t.header.language}
             </Button>
-            {user ? (
+            {mounted && user ? (
               <>
                 <IconButton onClick={handleAvatarClick} size="small" sx={{ ml: 1 }}>
                   <Avatar sx={{ width: 32, height: 32 }}>
@@ -113,7 +80,7 @@ export default function Header() {
                 >
                   <MenuItem disabled>{user.email}</MenuItem>
                   <MenuItem onClick={() => { handleClose(); router.push('/dashboard') }}>
-                    Dashboard
+                    {t.profileMenu.dashboard}
                   </MenuItem>
                   <MenuItem onClick={() => { handleClose(); router.push('/profile') }}>
                     {t.profileMenu.profile}

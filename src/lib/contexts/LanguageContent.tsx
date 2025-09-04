@@ -6,12 +6,16 @@ type Strings = {
   header: {
     siteTitle: string
     login: string
+    home: string
     about: string
     products: string
+    events: string
+    membership: string
     contact: string
     language: string
   }
   profileMenu: {
+    dashboard: string
     profile: string
     signOut: string
   }
@@ -47,12 +51,16 @@ const en: Strings = {
   header: {
     siteTitle: 'Site Title',
     login: 'Login',
+    home: 'Home',
     about: 'About Us',
     products: 'Products',
+    events: 'Events',
+    membership: 'Membership',
     contact: 'Contact Us',
     language: 'cn',
   },
   profileMenu: {
+    dashboard: 'Dashboard',
     profile: 'Profile',
     signOut: 'Sign out',
   },
@@ -88,12 +96,16 @@ const zh: Strings = {
   header: {
     siteTitle: '站点标题',
     login: '登录',
+    home: '首页',
     about: '关于我们',
     products: '产品',
+    events: '活动',
+    membership: '会员',
     contact: '联系我们',
     language: 'en',
   },
   profileMenu: {
+    dashboard: '仪表盘',
     profile: '个人信息',
     signOut: '退出登录',
   },
