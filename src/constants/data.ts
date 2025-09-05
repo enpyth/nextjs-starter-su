@@ -44,6 +44,13 @@ export const navItems: NavItem[] = [
     shortcut: ['m', 'm'],
     items: []
   },
+  {
+    title: 'Membership',
+    url: '/dashboard/membership',
+    icon: 'user2',
+    shortcut: ['m', 'm'],
+    items: []
+  }
 ];
 
 export interface SaleUser {

@@ -1,83 +1,21 @@
-"use client"
-
-import { useState } from 'react'
-import { Box, Button, Container, Stack, TextField, Typography, Alert } from '@mui/material'
-import SendIcon from '@mui/icons-material/Send'
+import Hero from '@/features/home/hero'
+import ContactEmail from '@/components/form/contact-email'
+import { Container } from '@mui/material'
 
 export default function ContactPage() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
-  const [submitting, setSubmitting] = useState(false)
-  const [success, setSuccess] = useState<string | null>(null)
-  const [error, setError] = useState<string | null>(null)
-
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setSubmitting(true)
-    setSuccess(null)
-    setError(null)
-    try {
-      const res = await fetch('/api/resend', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Failed to send')
-      setSuccess('Your message has been sent. We will get back to you soon.')
-      setName('')
-      setEmail('')
-      setMessage('')
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Something went wrong'
-      setError(msg)
-    } finally {
-      setSubmitting(false)
-    }
-  }
-
+  const subjectOptions = [
+    { value: 'enquiry', label: 'Enquiry' },
+    { value: 'feedback', label: 'Feedback' },
+    { value: 'other', label: 'Other' },
+  ]
   return (
-    <Container maxWidth="sm" sx={{ py: 6 }}>
-      <Stack spacing={3} component="form" onSubmit={onSubmit}>
-        <Typography variant="h4" component="h1">
-          Contact
-        </Typography>
-
-        {success && <Alert severity="success">{success}</Alert>}
-        {error && <Alert severity="error">{error}</Alert>}
-
-        <TextField
-          label="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          fullWidth
-        />
-        <TextField
-          label="Email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          fullWidth
-        />
-        <TextField
-          label="Message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          required
-          fullWidth
-          multiline
-          minRows={4}
-        />
-
-        <Box>
-          <Button type="submit" variant="contained" disabled={submitting} endIcon={<SendIcon />}>
-            {submitting ? 'Sending…' : 'Send'}
-          </Button>
-        </Box>
-      </Stack>
+    <main className="flex-grow">
+    <Hero imageSrc="/banner/banner-about.jpeg" title="Contact Us" />
+    <Container maxWidth="lg" sx={{ py: 6 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-8 lg:gap-12 max-w-6xl mx-auto">
+        <ContactEmail subjectOptions={subjectOptions} />
+      </div>
     </Container>
+  </main>
   )
 }

@@ -1,9 +1,9 @@
 import Hero from "@/features/home/hero"
 
-export default function Events() {
+export default function Product() {
   return (
     <main className="flex-grow">
-      <Hero imageSrc="/banner/banner-about.jpeg" title="Events" />
+      <Hero imageSrc="/banner/banner-about.jpeg" title="Product" />
     </main>
   )
 }
