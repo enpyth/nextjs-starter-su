@@ -11,11 +11,11 @@ export default function ContactPage() {
   return (
     <main className="flex-grow">
     <Hero imageSrc="/banner/banner-about.jpeg" title="Contact Us" />
-    <Container maxWidth="lg" sx={{ py: 6 }}>
-      <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-8 lg:gap-12 max-w-6xl mx-auto">
+    <Container maxWidth="md" sx={{ py: 6, display: 'flex', justifyContent: 'center' }}>
+      <div className="w-full max-w-2xl">
         <ContactEmail subjectOptions={subjectOptions} />
       </div>
     </Container>
-  </main>
+    </main>
   )
 }
